@@ -9,11 +9,12 @@ def decomposeKey(pNum, pLength, pLevel):
 	return xReturn;
 
 
-# fonction qui retourne le resultat d'une liste pList melangee par un nombre pNum
-def shuffle(pList, pNum):
+# fonction qui melange une liste pSIGMA melangee par une cle pKEY
+def shuffle(pSIGMA, pKEY):
 	xReturn = []
+	pList = list(pSIGMA)
 	l = len(pList)
-	i = pNum % l;                       # rang actuel
+	i = pKEY % l;                       # rang actuel
 	n = 0;                              # nombre d'elements traites
 	while( n < len(pList) ):
 		if( pList[i] != '_' ):          # si l'element n'est pas traite
@@ -22,10 +23,13 @@ def shuffle(pList, pNum):
 			n += 1;                     # on met a jour notre indicateur de caracteres traites
 		else:                           # si l'element est deja traite
 			i += 1
-		i = (i+pNum) % l
-	return xReturn
+		i = (i+pKEY) % l
+	return xReturn;
+
 
 # fonction qui fait tourner les rotors
+def rotateRotors(rotor):
+	
 
 
 
@@ -33,17 +37,18 @@ def shuffle(pList, pNum):
 
 
 
-sigma = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' ']
+SIGMA = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' '];
 userkey = 3*(27**0) + 21*(27**1) + 25*(27**2);
-level = 3;
-keymax = len(sigma)**level
+LEVEL = 3;
+keymax = len(SIGMA)**LEVEL
 
 # decomposition de n compris entre 0 et len(sigma)**level
-key = decomposeKey(userkey, len(sigma), level);
+KEY = decomposeKey(userkey, len(SIGMA), LEVEL);
 
-rotor = [];
+ROTOR = [];
+ROTOR.append( [] );
 # on cree les rotors grace a sigma et aux cles recuperees
-for i in range(0, level):
-	print key[i]
-	rotor.append( shuffle(sigma, key[i]) );
-	print rotor[i]
+for i in range(0, LEVEL):
+	ROTOR.append( shuffle( SIGMA, KEY[i]) );           # on creer le rotor et le melange suivant la cle
+	ROTOR[0].append( ROTOR[i+1][0] );                        # on enregistre la lettre en premiere position dans la premiere entree du rotor
+	print ROTOR[i+1]                                         # on l'affiche
