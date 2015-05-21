@@ -95,4 +95,4 @@ for c in range(0, len(m)):
 	rotateRotors(ROTOR);                               # on pivote les rotors
 
 print
-print 'Enigma: ', M
+print 'Enigma :', M
