@@ -27,13 +27,22 @@ def shuffle(pSIGMA, pKEY):
 	return xReturn;
 
 
-# fonction qui fait tourner les rotors de pROTOR (indice 1 a len(pROTOR)) l'indice 0 etant la liste des premiers caracteres des rotors
-def rotateRotors(pROTOR):
+# fonction qui fait tourner les rotors (sens horaire) de pROTOR (indice 1 a len(pROTOR)) l'indice 0 etant la liste des premiers caracteres des rotors
+def rotateRotorsClockwise(pROTOR):
 	moveNext = True;
-	for r in range(1, len(pROTOR)):                                        # parcourt les rotors
+	for r in range(1, len(pROTOR)):                                         # parcourt les rotors
 		if( moveNext ):                                                     # si on doit deplacer le rotor
-			pROTOR[r] = [pROTOR[r][-1]] + pROTOR[r][:-1]                   # pivote le rotor de 1 caractere
+			pROTOR[r] = [pROTOR[r][-1]] + pROTOR[r][:-1]                    # pivote le rotor de 1 caractere
 			moveNext = ( pROTOR[r][0] == pROTOR[0][r-1] );                  # si le rotor vient de finir un tour, moveNext = True sinon moveNext = False
+
+
+# fonction qui fait tourner les rotors (sens anti-horaire) de pROTOR (indice 1 a len(pROTOR)) l'indice 0 etant la liste des premiers caracteres des rotors
+def rotateRotorsAnticlockwise(pROTOR):
+	moveNext = True;
+	for r in range(1, len(pROTOR)):                                         # parcourt les rotors
+		if( moveNext ):                                                     # si on doit deplacer le rotor
+			pROTOR[r] = pROTOR[r][1:] + [pROTOR[r][0]]                    # pivote le rotor de 1 caractere
+			moveNext = ( pROTOR[r][-1] == pROTOR[0][r-1] );                  # si le rotor vient de finir un tour, moveNext = True sinon moveNext = False
 
 
 # fonction qui affiche les rotors
@@ -42,9 +51,15 @@ def printRotors(pROTOR):
 		print pROTOR[i];
 
 # fonction qui code un caractere pChar via les rotors
-def codeChar(pChar, pSIGMA, pROTOR):
+def encodeChar(pChar, pSIGMA, pROTOR):
 	for r in range(1, len(pROTOR)):              # parcourt les rotors
 		pChar = SIGMA[ pROTOR[r].index(pChar) ]; # le caractere devient celui au rang de l'alphabet correspondant au rang du caractere dans le rotor r
+	return pChar;
+
+# fonction qui decode un caractere pChar via les rotors
+def decodeChar(pChar, pSIGMA, pROTOR):
+	for r in reversed(range(1, len(pROTOR))):              # parcourt les rotors
+		pChar = pROTOR[r][ pSIGMA.index(pChar) ];          # le caractere devient celui au rang de l'alphabet correspondant au rang du caractere dans le rotor r
 	return pChar;
 
 
@@ -67,7 +82,7 @@ def codeChar(pChar, pSIGMA, pROTOR):
 #############################################################################################################################
 
 # ALPHABET 
-SIGMA = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' '];
+SIGMA = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' '];
 # NOMBRE DE ROTORS
 LEVEL = 3; # valeur par defaut
 LEVEL = int( raw_input('Level: ') );
@@ -88,11 +103,33 @@ for i in range(0, LEVEL):
 # SAISIE DU MESSAGE
 m = raw_input('Message: ');
 
-# CODAGE DU MESSAGE
+# CHOIX DU TYPE (ENCODE / DECODE)
+type = 'X';
+while( type != 'E' and type != 'D' ):
+	type = ( raw_input('encoder ou decoder [E/D]: ') ).upper();
+# VARIABLE DU HASH
 M = '';
-for c in range(0, len(m)):
-	M += codeChar(m[c], SIGMA, ROTOR);
-	rotateRotors(ROTOR);                               # on pivote les rotors
+
+
+
+# ENCODAGE DU MESSAGE
+if( type == 'E' ): 
+	for c in range(0, len(m)):
+			M += encodeChar(m[c], SIGMA, ROTOR);
+			rotateRotorsClockwise(ROTOR);                  # on pivote les rotors dans le sens horaire
+# DECODAGE DU MESSAGE
+else:
+	# decalage des rotor en position de fin d'encodage (taille du message -1)
+	for r in range(1, len(m)):
+		rotateRotorsClockwise(ROTOR);
+
+	# pour chaque caractere en partant du dernier
+	for c in reversed(range(0, len(m))):
+		M += decodeChar(m[c], SIGMA, ROTOR); # on lit le caractere
+		rotateRotorsAnticlockwise(ROTOR);    # on tourne les rotors dans le sens inverse
+	
+	# on retourne la chaine
+	M = M[::-1];
 
 print
 print 'Enigma :', M
