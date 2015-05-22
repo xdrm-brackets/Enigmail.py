@@ -17,9 +17,9 @@ def shuffle(pSIGMA, pKEY):
 	i = pKEY % l;                       # rang actuel
 	n = 0;                              # nombre d'elements traites
 	while( n < len(pList) ):
-		if( pList[i] != '_' ):          # si l'element n'est pas traite
+		if( pList[i] != 'stop_value' ):          # si l'element n'est pas traite
 			xReturn.append( pList[i] ); # on met le caractere dans xReturn
-			pList[i] = '_';             # on met un caractere qui nous indique que l'on a deja traite
+			pList[i] = 'stop_value';             # on met un caractere qui nous indique que l'on a deja traite
 			n += 1;                     # on met a jour notre indicateur de caracteres traites
 		else:                           # si l'element est deja traite
 			i += 1
@@ -81,8 +81,11 @@ def decodeChar(pChar, pSIGMA, pROTOR):
 #############################################################################################################################
 #############################################################################################################################
 
-# ALPHABET 
-SIGMA = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' '];
+# DEFINITION DE L'ALPHABET
+SIGMA = 'abcdefghijklmnopqrstuvwxyz,.?!:[](){}-_0123456789#$*/ \\';
+
+# ALPHABET FORMATE EN LISTE
+SIGMA = list(SIGMA);
 # NOMBRE DE ROTORS
 LEVEL = 3; # valeur par defaut
 LEVEL = int( raw_input('Level: ') );
@@ -98,10 +101,13 @@ ROTOR.append( [] );
 for i in range(0, LEVEL):
 	ROTOR.append( shuffle( SIGMA, KEY[i]) );           # on creer le rotor et le melange suivant la cle
 	ROTOR[0].append( ROTOR[i+1][0] );                  # on enregistre la lettre en premiere position dans la premiere entree du rotor
-	print ROTOR[i+1]                                   # on l'affiche
+
+
+# AFFICHAGE DES ROTORS
+# printRotors(ROTOR);
 
 # SAISIE DU MESSAGE
-m = raw_input('Message: ');
+m = ( raw_input('Message: ') ).lower();
 
 # CHOIX DU TYPE (ENCODE / DECODE)
 type = 'X';
