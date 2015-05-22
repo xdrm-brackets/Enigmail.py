@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 from enigmail import *
+from mail import *
+import getpass
 
 
 
@@ -33,27 +35,20 @@ for i in range(0, LEVEL):
 # AFFICHAGE DES ROTORS
 # printRotors(ROTOR);
 
-# LIEN DU FICHIER A CRYPTER
-f1 = raw_input('Fichier d\'entrée: ');
-f2 = raw_input('Fichier de sortie: ');
-
 # OUVERTURE ET LECTURE DU FICHIER
-inFile = open(f1, 'r');
+inFile = open('bucket-file', 'r');
 m = inFile.read().decode('utf-8');
+inFile.close();
 
-# CHOIX DU TYPE (ENCODE / DECODE)
+# CHOIX DU TYPE (ENCODE+MAIL / ENCODE / DECODE)
 type = '';
-while( type != 'E' and type != 'D' ):
-	type = ( raw_input('encoder ou decoder [E/D]: ') ).upper();
+while( type != 'M' and type != 'C' and type != 'D' ):
+	type = ( raw_input('[M] Crypter et envoyer par mail\n[C] Crypter\n[D] Décrypter\n > ') ).upper();
 # VARIABLE DU HASH
 M = '';
 
-
-# DEMARRE LE CHRONO
-startTime = time.time();
-
 # ENCODAGE DU MESSAGE
-if( type == 'E' ): 
+if( type == 'M' or type == 'C' ): 
 	for c in range(0, len(m)):
 			M += encodeChar(m[c], SIGMA, ROTOR);
 			rotateRotorsClockwise(ROTOR);                  # on pivote les rotors dans le sens horaire
@@ -71,10 +66,19 @@ else:
 	# on retourne la chaine
 	M = M[::-1];
 
-# ON ECRIT LE RESULTAT DANS LE FICHIER DE SORTIE
-outFile = open(f2, 'w');
-outFile.write(M.encode('utf-8'));
-outFile.close();
 
-print
-print 'Temps d\'exécution:',time.time() - startTime;
+# [TYPE = M] ENVOI DU MAIL 
+if( type == 'M' ):
+	From =       str( raw_input('Votre adr. gmail: ') );
+	Pass = str( getpass.getpass('Mot de passe    : ') );
+	print
+	To   =       str( raw_input('Destinataire    : ') );
+	Subj =       str( raw_input('Objet           : ') );
+	print
+	print 'Envoi en cours';
+	sendMail(From, Pass, To, Subj, M);
+# ECRITURE FICHIER
+else:
+	outFile = open('bucket-file', 'w');
+	outFile.write( M.encode('utf-8') );
+	outFile.close();

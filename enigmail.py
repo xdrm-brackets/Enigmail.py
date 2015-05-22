@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import time;
-
 # fonction qui calcule le nombre de rotors en fonction de la clé pKey et qui retourne un entier
 def calcLevel(pKey, pSIGMA):
 	xN = 1;
