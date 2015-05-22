@@ -1,4 +1,4 @@
-# enigma.py
+# Enigmail.py
 
 Implémentation enigma alternative en python
 
