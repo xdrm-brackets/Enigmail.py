@@ -6,7 +6,7 @@ Implémentation enigma alternative en python
 1. Alphabet utilisé
 
 ### Paramètres externes
-2. Clé (hex ouint)
+2. Clé (hex ou int)
 3. Message
 4. Encodage ou décodage
 
