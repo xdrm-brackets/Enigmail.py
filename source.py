@@ -85,7 +85,7 @@ def decodeChar(pChar, pSIGMA, pROTOR):
 #############################################################################################################################
 
 # DEFINITION DE L'ALPHABET
-SIGMA = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzàèéêôùàç&=+^~@%,.?!:[](){}-_0123456789#$*/ \\"\'';
+SIGMA = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz&=+^~@%,.?!:[](){}-_0123456789#$*/ \\"\'';
 
 # ALPHABET FORMATE EN LISTE
 SIGMA = list(SIGMA);
