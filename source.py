@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 import time;
@@ -97,8 +96,12 @@ def decodeChar(pChar, pSIGMA, pROTOR):
 #############################################################################################################################
 
 # DEFINITION DE L'ALPHABET
-SIGMA = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz&=+^~@%,.?!:[](){}-_0123456789#$*/ \\"\'';
-
+SIGMA =  'ABCDEFGHIJKLMNOPQRSTUVWXYZ';           # maj
+SIGMA += 'abcdefghijklmnopqrstuvwxyz';           # min
+SIGMA += '&=+^~@%,.?!:[](){}-_#$*/ \\"\'\n';       # ponctuation + retour charriot
+SIGMA += '0123456789';                           # digit
+SIGMA += 'éèêàùç';                               # accents
+SIGMA = SIGMA.decode('utf-8');
 # ALPHABET FORMATE EN LISTE
 SIGMA = list(SIGMA);
 # NOMBRE DE ROTORS
@@ -115,14 +118,20 @@ ROTOR.append( [] );
 # on cree les rotors grace a sigma et aux cles recuperees
 for i in range(0, LEVEL):
 	ROTOR.append( shuffle( SIGMA, KEY[i]) );           # on creer le rotor et le melange suivant la cle
-	ROTOR[0].append( ROTOR[i+1][0] );                  # on enregistre la lettre en premiere position dans la premiere entree du rotor
+	ROTOR[0].append( ROTOR[i+1][0] );                  # on enregistre la l&ettre en premiere position dans la premiere entree du rotor
 
 
 # AFFICHAGE DES ROTORS
 # printRotors(ROTOR);
 
-# SAISIE DU MESSAGE
-m = ( raw_input('Message: ') );
+# LIEN DU FICHIER A CRYPTER
+f1 = raw_input('Fichier d\'entrée: ');
+f2 = raw_input('Fichier de sortie: ');
+
+# OUVERTURE ET LECTURE DU FICHIER
+inFile = open(f1, 'r');
+m = inFile.read().decode('utf-8');
+print m;
 
 # CHOIX DU TYPE (ENCODE / DECODE)
 type = '';
@@ -154,10 +163,13 @@ else:
 	# on retourne la chaine
 	M = M[::-1];
 
+# ON ECRIT LE RESULTAT DANS LE FICHIER DE SORTIE
+outFile = open(f2, 'w');
+outFile.write(M.encode('utf-8'));
+outFile.close();
+
 print
 print 'Temps d\'exécution:',time.time() - startTime;
-print
-print 'Enigma :', M
 
 
 
