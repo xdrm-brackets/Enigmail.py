@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 # fonction qui retourne une liste de nombres entre 0 pLength a partir d'un nombre
 # compris entre 0 et pLength**pLevel
 def decomposeKey(pNum, pLength, pLevel):
@@ -82,7 +85,7 @@ def decodeChar(pChar, pSIGMA, pROTOR):
 #############################################################################################################################
 
 # DEFINITION DE L'ALPHABET
-SIGMA = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz,.?!:[](){}-_0123456789#$*/ \\"\'';
+SIGMA = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzàèéêôùàç&=+^~@%,.?!:[](){}-_0123456789#$*/ \\"\'';
 
 # ALPHABET FORMATE EN LISTE
 SIGMA = list(SIGMA);
