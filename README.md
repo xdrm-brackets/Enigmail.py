@@ -2,6 +2,8 @@
 
 Implémentation enigma alternative en python
 
+##### Note
+
 ### Paramètres internes
 1. Alphabet utilisé
 
