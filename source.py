@@ -98,7 +98,7 @@ def decodeChar(pChar, pSIGMA, pROTOR):
 # DEFINITION DE L'ALPHABET
 SIGMA =  'ABCDEFGHIJKLMNOPQRSTUVWXYZ';           # maj
 SIGMA += 'abcdefghijklmnopqrstuvwxyz';           # min
-SIGMA += '&=+^~@%,.?!:[](){}-_#$*/ \\"\'\n';       # ponctuation + retour charriot
+SIGMA += '&=+^~@%,.?!:;[](){}-_#$*/ \\"\'\n';    # ponctuation + retour charriot
 SIGMA += '0123456789';                           # digit
 SIGMA += 'éèêàùç';                               # accents
 SIGMA = SIGMA.decode('utf-8');
