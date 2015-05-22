@@ -1,6 +1,18 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+
+
+# fonction qui calcule le nombre de rotors en fonction de la clé pKey et qui retourne un entier
+def calcLevel(pKey, pSIGMA):
+	xN = 0;
+	for r in range(1,100):
+		if( pKey >= len(pSIGMA)**r ):  # si la clé est inférieure à la valeur max pour r rotors
+			xN = r;                    # on enregistre la valeur
+		else:                          # sinon (c'est qu'on a dépassé)
+			break;                     # on arrête la boucle et on renvoie la derniere valeur de r (xN)
+	return xN;
+
 # fonction qui retourne une liste de nombres entre 0 pLength a partir d'un nombre
 # compris entre 0 et pLength**pLevel
 def decomposeKey(pNum, pLength, pLevel):
@@ -91,10 +103,10 @@ SIGMA = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz&=+^~@%,.?!:[](){}-
 SIGMA = list(SIGMA);
 # NOMBRE DE ROTORS
 LEVEL = 3; # valeur par defaut
-LEVEL = int( raw_input('Level: ') );
-# CHOIX DE LA CLE (entre 0 et len(SIGMA)**level-1 ) => simplification grace a keymax
-keymax = len(SIGMA)**LEVEL
-userkey = int( raw_input('Cle (0 - %d): '%keymax) );
+# CHOIX DE LA CLE
+userkey = int( raw_input('Cle: ') );
+# CALCUL de LEVEL en fonction de la clé
+LEVEL = calcLevel(userkey, SIGMA);
 # DECOMPOSITION DE LA CLE PRIMAIRE EN CLES SECONDAIRES
 KEY = decomposeKey(userkey, len(SIGMA), LEVEL);
 # CREATION DES ROTORS EN FONCTION DES CLES SECONDAIRES 
@@ -154,4 +166,3 @@ print 'Enigma :', M
 
 
 
-# AUTOLEVEL fonction KEY - BRANCH[autolevel-fonction-key]
