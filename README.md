@@ -2,7 +2,7 @@
 
 Implémentation enigma alternative en python
 
-##### Note
+##### Note: Je ne suis pas expert en cryptographie et ne connait donc pas exactement si c'est facilement crackable et comment y remédier, ceci n'est qu'une ébauche
 
 ### Paramètres internes
 1. Alphabet utilisé
