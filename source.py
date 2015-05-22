@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-
+import time;
 
 # fonction qui calcule le nombre de rotors en fonction de la clé pKey et qui retourne un entier
 def calcLevel(pKey, pSIGMA):
-	xN = 0;
+	xN = 1;
 	for r in range(1,100):
 		if( pKey >= len(pSIGMA)**r ):  # si la clé est inférieure à la valeur max pour r rotors
 			xN = r;                    # on enregistre la valeur
@@ -104,7 +104,7 @@ SIGMA = list(SIGMA);
 # NOMBRE DE ROTORS
 LEVEL = 3; # valeur par defaut
 # CHOIX DE LA CLE
-userkey = int( raw_input('Cle: ') );
+userkey = int( raw_input('Cle (hex ou int): '), 0);
 # CALCUL de LEVEL en fonction de la clé
 LEVEL = calcLevel(userkey, SIGMA);
 # DECOMPOSITION DE LA CLE PRIMAIRE EN CLES SECONDAIRES
@@ -125,13 +125,15 @@ for i in range(0, LEVEL):
 m = ( raw_input('Message: ') );
 
 # CHOIX DU TYPE (ENCODE / DECODE)
-type = 'X';
+type = '';
 while( type != 'E' and type != 'D' ):
 	type = ( raw_input('encoder ou decoder [E/D]: ') ).upper();
 # VARIABLE DU HASH
 M = '';
 
 
+# DEMARRE LE CHRONO
+startTime = time.time();
 
 # ENCODAGE DU MESSAGE
 if( type == 'E' ): 
@@ -153,8 +155,9 @@ else:
 	M = M[::-1];
 
 print
+print 'Temps d\'exécution:',time.time() - startTime;
+print
 print 'Enigma :', M
-
 
 
 
