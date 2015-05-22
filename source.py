@@ -82,7 +82,7 @@ def decodeChar(pChar, pSIGMA, pROTOR):
 #############################################################################################################################
 
 # DEFINITION DE L'ALPHABET
-SIGMA = 'abcdefghijklmnopqrstuvwxyz,.?!:[](){}-_0123456789#$*/ \\';
+SIGMA = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz,.?!:[](){}-_0123456789#$*/ \\"\'';
 
 # ALPHABET FORMATE EN LISTE
 SIGMA = list(SIGMA);
@@ -107,7 +107,7 @@ for i in range(0, LEVEL):
 # printRotors(ROTOR);
 
 # SAISIE DU MESSAGE
-m = ( raw_input('Message: ') ).lower();
+m = ( raw_input('Message: ') );
 
 # CHOIX DU TYPE (ENCODE / DECODE)
 type = 'X';
