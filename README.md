@@ -28,11 +28,11 @@ Implémentation enigma alternative en python
 
 ### Initialiser
 
-######Se positionner dans le dossier _enigmail/_.
+######Se positionner dans le dossier __enigmail/__.
 ```bash
 cd enigmail/
 ```
-######Créer un _alias_ pour l'utilisation d'enigmail.
+######Créer un __alias__ pour l'utilisation d'enigmail.
 ```bash
 alias enigmail="sh $(pwd)/enigmail.sh"
 ```
@@ -41,7 +41,7 @@ alias enigmail="sh $(pwd)/enigmail.sh"
 enigmail config
 ```
 Il vous faudra ensuite entrer vos paramètres en remplaçant les valeurs déjà écrites puis enregistrer le fichier
-Si vous obtenez une erreur, retournez à la première étape vous n'êtes pas dans le dossier _enigmail/_
+Si vous obtenez une erreur, retournez à la première étape vous n'êtes pas dans le dossier __enigmail/__
 ### Utiliser
 Enigmail.py est pret, vous pouvez maintenant l'utiliser via 3 commandes:
 
