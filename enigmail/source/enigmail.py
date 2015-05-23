@@ -9,7 +9,7 @@ from email.MIMEText import MIMEText
 
 # cette fonction récupère toutes les lignes du fichier enigmail.config et les stocke dans un dictionaire qui est retourné
 def getConf():
-	fConf = open('enigmail.config', 'r');
+	fConf = open('.config', 'r');
 	lines = fConf.readlines();
 	fConf.close();
 

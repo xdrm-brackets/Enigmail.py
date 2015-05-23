@@ -8,14 +8,12 @@ Implémentation enigma alternative en python
 1. Alphabet utilisé
 
 ### Paramètres externes
-2. Clé (hex ou int)
-3. Fichier d'entrée
-4. Fichier de sortie
-5. Encodage ou décodage
+1. Clé (hex ou int)
+2. Fichier d'entrée
+3. Encodage+mail OU encodage OU décodage
 
 ### Sortie
-1. Message encodé ou décodé dans le fichier de sortie
-2. Temps d'exécution
+1. Message encodé ou décodé dans le fichier de sortie OU mail
 
 ### Points forts
 1. Rapide
@@ -26,3 +24,6 @@ Implémentation enigma alternative en python
 1. Prise en compte: accents + utf-8 [FAIT]
 2. Gestion: fichiers [FAIT]
 3. Améliorer le cryptage car pour un même caractère n fois, on obtient un schéma répétitif
+4. Gestion de serveur SMTP [FAIT~50]
+5. Fichier de config [FAIT~80]
+6. Appel en shell
