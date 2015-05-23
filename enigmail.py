@@ -1,5 +1,61 @@
 # -*- coding: utf-8 -*-
 
+import smtplib
+from email.MIMEMultipart import MIMEMultipart
+from email.MIMEText import MIMEText
+
+
+
+
+# cette fonction récupère toutes les lignes du fichier enigmail.config et les stocke dans un dictionaire qui est retourné
+def getConf():
+	fConf = open('enigmail.config', 'r');
+	lines = fConf.readlines();
+	fConf.close();
+
+	conf = {};
+
+	for i in lines:
+		confKey = i[:i.index('=')].replace(' ', '');
+		confVal = i[i.index('=')+1:].replace(' ', '').replace('\n', '');
+		conf[confKey] = confVal;
+
+	if( len(conf) >= 3 ): # si le fichier de config est bien récupéré et qu'il est complet (3 entrées)
+		return conf;
+	else:
+		return False;
+
+
+
+# cette fonction envoie un mail
+def sendMail(pPass, pTo, pSubject, pMessage):
+	conf = getConf();    # on récupère les informations du fichier de config
+
+	if( not conf ): # si enigmail.config est imcomplet ou a une erreur on envoie pas le mail
+		print "> Fichier enigmail.config incomplet ou contient une erreur"
+	else: # si tout est ok => envoi du mail
+		pMsg = MIMEMultipart();
+		pMsg['From'] = conf['mail_address'];
+		pMsg['To'] = pTo;
+		pMsg['Subject'] = pSubject;
+
+		pMsg.attach( MIMEText(pMessage.encode('utf-8')) );
+
+		srv = smtplib.SMTP(conf['smtp_server'], conf['smtp_port']);
+		srv.ehlo();
+		srv.starttls();
+		srv.ehlo();
+		srv.login(conf['mail_address'], pPass);
+
+		srv.sendmail( conf['mail_address'], pTo, pMsg.as_string() );
+		srv.quit();
+
+		print "> Mail envoye !";
+
+
+
+
+
 # fonction qui calcule le nombre de rotors en fonction de la clé pKey et qui retourne un entier
 def calcLevel(pKey, pSIGMA):
 	xN = 1;
@@ -64,12 +120,50 @@ def printRotors(pROTOR):
 
 # fonction qui code un caractere pChar via les rotors
 def encodeChar(pChar, pSIGMA, pROTOR):
-	for r in range(1, len(pROTOR)):              # parcourt les rotors
-		pChar = pSIGMA[ pROTOR[r].index(pChar) ]; # le caractere devient celui au rang de l'alphabet correspondant au rang du caractere dans le rotor r
-	return pChar;
+	try:
+		for r in range(1, len(pROTOR)):                        # parcourt les rotors
+			pChar = pSIGMA[ pROTOR[r].index(pChar) ];          # le caractere devient celui au rang de l'alphabet correspondant au rang du caractere dans le rotor r
+		return pChar;
+	except ValueError:                                         # si un caractère n'est pas dans l'alphabet
+		print "[ERREUR] Caractere non present dans l'alphabet";
+		raise SystemExit(0);
 
 # fonction qui decode un caractere pChar via les rotors
 def decodeChar(pChar, pSIGMA, pROTOR):
-	for r in reversed(range(1, len(pROTOR))):              # parcourt les rotors
-		pChar = pROTOR[r][ pSIGMA.index(pChar) ];          # le caractere devient celui au rang de l'alphabet correspondant au rang du caractere dans le rotor r
-	return pChar;
+	try:
+		for r in reversed(range(1, len(pROTOR))):              # parcourt les rotors
+			pChar = pROTOR[r][ pSIGMA.index(pChar) ];          # le caractere devient celui au rang de l'alphabet correspondant au rang du caractere dans le rotor r
+		return pChar;
+	except ValueError:                                         # si un caractère n'est pas dans l'alphabet
+		print "[ERREUR] Caractere non present dans l'alphabet";
+		raise SystemExit(0);
+
+
+
+
+# fonction qui encode une chaine
+def encodeStr(pM, pSIGMA, pROTOR):
+	encodedStr = '';
+	for c in pM:
+		encodedStr += encodeChar(c, pSIGMA, pROTOR);
+		rotateRotorsClockwise(pROTOR);                  # on pivote les rotors dans le sens horaire
+	return encodedStr;
+
+
+
+
+
+# fonction qui decode une chaine
+def decodeStr(pM, pSIGMA, pROTOR):
+	decodedStr = '';
+	# decalage des rotor en position de fin d'encodage (taille du message -1)
+	for r in pM[1:]:
+		rotateRotorsClockwise(pROTOR);
+
+	# pour chaque caractere en partant du dernier
+	for c in pM[::-1]:
+		decodedStr += decodeChar(c, pSIGMA, pROTOR);           # on lit le caractere
+		rotateRotorsAnticlockwise(pROTOR);                     # on tourne les rotors dans le sens inverse
+		
+	# on retourne la chaine
+	return decodedStr[::-1];
