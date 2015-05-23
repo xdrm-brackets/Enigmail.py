@@ -42,10 +42,9 @@ enigmail config
 ```
 Il vous faudra ensuite entrer vos paramètres en remplaçant les valeurs déjà écrites puis enregistrer le fichier
 Si vous obtenez une erreur, retournez à la première étape vous n'êtes pas dans bon dossier.
+
+
 ### Utiliser
-
-
-### Enigmail.py est prêt à être utilisé:
 
 ######Ecrire
 ```bash
