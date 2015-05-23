@@ -1,8 +1,15 @@
 # -*- coding: utf-8 -*-
 from enigmail import *
-import getpass
+import getpass, sys, os
 
+path = os.path.abspath( os.path.dirname(sys.argv[0]) );
 
+# paramètres utilisateurs
+conf = getConf(path);
+
+if( conf == False ): # si manque des paramètres
+	print "parametres manquants";
+	raise SystemExit(0);
 
 
 # DEFINITION DE L'ALPHABET
@@ -36,7 +43,7 @@ for i in range(0, LEVEL):
 # printRotors(ROTOR);
 
 # OUVERTURE ET LECTURE DU FICHIER
-inFile = open('bucket-file', 'r');
+inFile = open(path + '/../bucket-file', 'r');
 m = inFile.read().decode('utf-8');
 inFile.close();
 
@@ -62,10 +69,10 @@ if( type == 'M' ):
 	Pass = str( getpass.getpass('Mot de passe    : ') );
 	print '...';
 	
-	sendMail(Pass, To, Subj, M);
+	sendMail(conf, Pass, To, Subj, M);
 
 # ECRITURE FICHIER
 else:
-	outFile = open('bucket-file', 'w');
+	outFile = open(path + '/../bucket-file', 'w');
 	outFile.write( M.encode('utf-8') );
 	outFile.close();

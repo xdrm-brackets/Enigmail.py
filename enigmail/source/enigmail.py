@@ -8,8 +8,8 @@ from email.MIMEText import MIMEText
 
 
 # cette fonction récupère toutes les lignes du fichier enigmail.config et les stocke dans un dictionaire qui est retourné
-def getConf():
-	fConf = open('.config', 'r');
+def getConf(pPath):
+	fConf = open(pPath+'/../.config', 'r');
 	lines = fConf.readlines();
 	fConf.close();
 
@@ -20,7 +20,7 @@ def getConf():
 		confVal = i[i.index('=')+1:].replace(' ', '').replace('\n', '');
 		conf[confKey] = confVal;
 
-	if( len(conf) >= 3 ): # si le fichier de config est bien récupéré et qu'il est complet (3 entrées)
+	if( len(conf) == 3 ): # si le fichier de config est bien récupéré et qu'il est complet
 		return conf;
 	else:
 		return False;
@@ -28,29 +28,27 @@ def getConf():
 
 
 # cette fonction envoie un mail
-def sendMail(pPass, pTo, pSubject, pMessage):
-	conf = getConf();    # on récupère les informations du fichier de config
-
-	if( not conf ): # si enigmail.config est imcomplet ou a une erreur on envoie pas le mail
-		print "> Fichier enigmail.config incomplet ou contient une erreur"
-	else: # si tout est ok => envoi du mail
+def sendMail(pConf, pPass, pTo, pSubject, pMessage):
+	try:
 		pMsg = MIMEMultipart();
-		pMsg['From'] = conf['mail_address'];
+		pMsg['From'] = pConf['mail_address'];
 		pMsg['To'] = pTo;
 		pMsg['Subject'] = pSubject;
 
 		pMsg.attach( MIMEText(pMessage.encode('utf-8')) );
 
-		srv = smtplib.SMTP(conf['smtp_server'], conf['smtp_port']);
+		srv = smtplib.SMTP(pConf['smtp_server'], pConf['smtp_port']);
 		srv.ehlo();
 		srv.starttls();
 		srv.ehlo();
-		srv.login(conf['mail_address'], pPass);
+		srv.login(pConf['mail_address'], pPass);
 
-		srv.sendmail( conf['mail_address'], pTo, pMsg.as_string() );
+		srv.sendmail( pConf['mail_address'], pTo, pMsg.as_string() );
 		srv.quit();
 
 		print "> Mail envoye !";
+	except smtplib.SMTPAuthenticationError:
+		print "> Mauvais login ou mot de passe\n\(enigmail config) pour changer votre adresse";
 
 
 
