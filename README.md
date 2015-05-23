@@ -36,13 +36,12 @@ cd enigmail/
 ```bash
 alias enigmail="sh $(pwd)/enigmail.sh"
 ```
-Tapez la commande ``enigmail``, si l'alias est bon, le programme devrait se lancer
 ######Entrez vos paramètres personnels
 ```bash
 enigmail config
 ```
 Il vous faudra ensuite entrer vos paramètres en remplaçant les valeurs déjà écrites puis enregistrer le fichier
-
+Si vous obtenez une erreur, retournez à la première étape vous n'êtes pas dans le dossier _enigmail/_
 ### Utiliser
 Enigmail.py est pret, vous pouvez maintenant l'utiliser via 3 commandes:
 
