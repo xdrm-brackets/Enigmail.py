@@ -32,12 +32,32 @@ Implémentation enigma alternative en python
 ```bash
 cd enigmail/
 ```
+2. Créer un _alias_ pour l'utilisation d'enigmail.
+```bash
+alias enigmail="sh $(pwd)/enigmail.sh"
+```
+Tapez la commande ``enigmail``, si l'alias est bon, le programme devrait se lancer
+3. Entrez vos paramètres personnels
+```bash
+enigmail config
+```
+Il vous faudra ensuite entrer vos paramètres en remplaçant les valeurs déjà écrites puis enregistrer le fichier
 
+### Utiliser
+Enigmail.py est pret, vous pouvez maintenant l'utiliser via 3 commandes:
 
-
-
-
-
+1. Ecrire
+```bash
+enigmail write
+```
+2. Lire
+```bash
+enigmail read
+```
+3. Crypter+Envoyer par mail/Crypter seulement/Décrypter seulement
+```bash
+enigmail
+```
 
 
 ### A faire
