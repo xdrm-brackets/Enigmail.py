@@ -2,7 +2,7 @@
 
 Implémentation enigma alternative en python
 
-##### Note: Je ne suis pas expert en cryptographie et ne connait donc pas exactement si c'est facilement crackable et comment y remédier, ceci n'est qu'une ébauche
+##### Note: Je ne suis pas expert en cryptographie, ceci n'est qu'une ébauche
 
 ### Paramètres internes
 1. Alphabet utilisé
@@ -19,6 +19,46 @@ Implémentation enigma alternative en python
 1. Rapide
 2. Complexe
 3. Modulable
+4. Appel en shell
+
+
+
+
+# Utilisation
+
+### Initialiser
+
+######Se positionner dans le dossier __enigmail/__.
+```bash
+cd enigmail/
+```
+######Créer un __alias__ pour l'utilisation d'enigmail.
+```bash
+alias enigmail="sh $(pwd)/enigmail.sh"
+```
+######Entrez vos paramètres personnels
+```bash
+enigmail config
+```
+Il vous faudra ensuite entrer vos paramètres en remplaçant les valeurs déjà écrites puis enregistrer le fichier
+Si vous obtenez une erreur, retournez à la première étape vous n'êtes pas dans bon dossier.
+
+
+### Utiliser
+
+######Ecrire
+```bash
+enigmail write
+```
+######Lire
+```bash
+enigmail read
+```
+######Crypter+Envoyer par mail/Crypter seulement/Décrypter seulement
+```bash
+enigmail
+```
+
 
 ### A faire
 1. Prise en compte: accents + utf-8 [FAIT]
