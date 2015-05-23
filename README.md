@@ -29,9 +29,9 @@ Implémentation enigma alternative en python
 ### Initialiser
 
 1. Se positionner dans le dossier _enigmail/_.
-``bash
+```bash
 cd enigmail/
-``
+```
 
 
 
