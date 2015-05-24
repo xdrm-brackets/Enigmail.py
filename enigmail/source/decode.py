@@ -13,15 +13,7 @@ inFile.close();
 
 
 # DEFINITION DE L'ALPHABET
-SIGMA =  'ABCDEFGHIJKLMNOPQRSTUVWXYZ';           # maj
-SIGMA += 'abcdefghijklmnopqrstuvwxyz';           # min
-SIGMA += '&=+^~@%,.?!:;[](){}-_#$*/ \\"\'\n';    # ponctuation + retour charriot
-SIGMA += '0123456789';                           # digit
-SIGMA += 'éèêàùç';                               # accents
-SIGMA = SIGMA.decode('utf-8');
-
-# ALPHABET FORMATE EN LISTE
-SIGMA = list(SIGMA);
+SIGMA = getSigma();
 
 # CHOIX DE LA CLE
 userkey = int( raw_input('Cle (hex ou int): '), 0);

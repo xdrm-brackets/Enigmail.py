@@ -16,7 +16,7 @@ then # si 1 paramètre
 		'write')  nano "$path/bucket-file";;  # ouvre en modification le bucket file
 		'empty')  echo "">"$path/bucket-file";;  # vide le bucket file
 			                                  # ouvre en lecture le bucket file
-		'read')  echo "\n======================================="; cat "$path/bucket-file"; echo "\n=======================================";; 
+		'read')  echo "\n======================================="; cat "$path/bucket-file"|less; echo "\n=======================================";; 
 		'encode') python "$path/source/encode.py";;
 		'decode') python "$path/source/decode.py";;
 		'send') python "$path/source/send.py";;

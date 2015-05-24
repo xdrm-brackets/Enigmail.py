@@ -55,6 +55,17 @@ def sendMail(pConf, pPass, pTo, pSubject, pMessage):
 
 
 
+# fonction qui renvoie l'alphabet 
+def getSigma():
+	SIGMA =  'ABCDEFGHIJKLMNOPQRSTUVWXYZ';           # maj
+	SIGMA += 'abcdefghijklmnopqrstuvwxyz';           # min
+	SIGMA += '&=+^~@%,.?!:;[](){}-_#$*/ \\"«»\'\n';    # ponctuation + retour charriot
+	SIGMA += '0123456789';                           # digit
+	SIGMA += 'éèêàâùçîô';                               # accents
+	SIGMA = SIGMA.decode('utf-8');
+
+	# ALPHABET FORMATE EN LISTE
+	return list(SIGMA);
 
 # fonction qui calcule le nombre de rotors en fonction de la clé pKey et qui retourne un entier
 def calcLevel(pKey, pSIGMA):
@@ -125,7 +136,7 @@ def encodeChar(pChar, pSIGMA, pROTOR):
 			pChar = pSIGMA[ pROTOR[r].index(pChar) ];          # le caractere devient celui au rang de l'alphabet correspondant au rang du caractere dans le rotor r
 		return pChar;
 	except ValueError:                                         # si un caractère n'est pas dans l'alphabet
-		print "[ERREUR] Caractere non present dans l'alphabet";
+		print "[ERREUR] Caractere %s non present dans l'alphabet" % pChar;
 		raise SystemExit(0);
 
 # fonction qui decode un caractere pChar via les rotors
@@ -135,7 +146,7 @@ def decodeChar(pChar, pSIGMA, pROTOR):
 			pChar = pROTOR[r][ pSIGMA.index(pChar) ];          # le caractere devient celui au rang de l'alphabet correspondant au rang du caractere dans le rotor r
 		return pChar;
 	except ValueError:                                         # si un caractère n'est pas dans l'alphabet
-		print "[ERREUR] Caractere non present dans l'alphabet";
+		print "[ERREUR] Caractere %s non present dans l'alphabet" % pChar;
 		raise SystemExit(0);
 
 
