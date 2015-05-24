@@ -22,5 +22,6 @@ if( body != '' ):
 	outFile = open(path + '/../bucket-file', 'w');
 	outFile.write( body );
 	outFile.close();
+	print "Fini!";
 else:
 	print "Erreur";

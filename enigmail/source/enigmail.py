@@ -25,7 +25,7 @@ def getConf(pPath):
 		except ValueError:
 			pass;
 
-	if( len(conf) == 6 ): # si le fichier de config est bien récupéré et qu'il est complet
+	if( len(conf) >= 6 ): # si le fichier de config est bien récupéré et qu'il est complet
 		return conf;
 	else:
 		return False;
@@ -43,11 +43,11 @@ def sendMail(pConf, pPass, pTo, pSubject, pMessage):
 
 		pMsg.attach( MIMEText(pMessage.encode('utf-8')) );
 
-		srv.ehlo();
+		srv.ehlo_or_helo_if_needed();
 
 		if( srv.has_extn('STARTTLS') ):
 			srv.starttls();
-			srv.ehlo();
+			srv.ehlo_or_helo_if_needed();
 
 		srv.login(pConf['login'], pPass);
 		srv.sendmail( pConf['mail_address'], pTo, pMsg.as_string() );
@@ -178,29 +178,37 @@ def decodeChar(pChar, pSIGMA, pROTOR):
 
 
 
-# fonction qui encode une chaine
-def encodeStr(pM, pSIGMA, pROTOR):
-	encodedStr = '';
-	for c in pM:
-		encodedStr += encodeChar(c, pSIGMA, pROTOR);
-		rotateRotorsClockwise(pROTOR);                  # on pivote les rotors dans le sens horaire
+# fonction qui encode une chaine (pTimes fois)
+def encodeStr(pM, pSIGMA, pROTOR, pTimes):
+	tmp = pM;                                               # tmp contient le mot en cours [initial, initial codé 1 fois, ...]
+
+	for t in range(0, pTimes):                              # pour chaque fois, on encode le message
+		encodedStr = '';
+		for c in tmp:                                       # pour chaque caractère de tmp
+			encodedStr += encodeChar(c, pSIGMA, pROTOR);    # on encode le caractère courant
+			rotateRotorsClockwise(pROTOR);                  # on pivote les rotors dans le sens horaire
+		tmp = encodedStr;                                   # tmp vaut maintenant la valeur déjà codée
+
 	return encodedStr;
 
 
 
 
 
-# fonction qui decode une chaine
-def decodeStr(pM, pSIGMA, pROTOR):
-	decodedStr = '';
+# fonction qui decode une chaine (pTimes fois)
+def decodeStr(pM, pSIGMA, pROTOR, pTimes):
+	tmp = pM;
+
 	# decalage des rotor en position de fin d'encodage (taille du message -1)
-	for r in pM[1:]:
+	for r in range(1, pTimes*len(pM)):
 		rotateRotorsClockwise(pROTOR);
 
-	# pour chaque caractere en partant du dernier
-	for c in pM[::-1]:
-		decodedStr += decodeChar(c, pSIGMA, pROTOR);           # on lit le caractere
-		rotateRotorsAnticlockwise(pROTOR);                     # on tourne les rotors dans le sens inverse
-		
+	for t in range(0,pTimes):
+		decodedStr = '';
+		for c in tmp[::-1]:                                        # pour chaque caractere en partant du dernier
+			decodedStr += decodeChar(c, pSIGMA, pROTOR);           # on lit le caractere
+			rotateRotorsAnticlockwise(pROTOR);                     # on tourne les rotors dans le sens inverse
+		tmp = decodedStr[::-1];
+
 	# on retourne la chaine
 	return decodedStr[::-1];

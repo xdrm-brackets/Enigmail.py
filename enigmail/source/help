@@ -41,6 +41,9 @@ OPTIONS
 	send
 		open an interface to choose your receiver, your subjet and type your email password then send an email containing the content of the bucket file
 
+	receive
+		get your last ENIGMAIL's email from your mailbox and put its content to the bucket file
+
 AUTHOR
 	Written by Adrien MARQUES.
 
