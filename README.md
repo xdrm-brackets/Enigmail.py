@@ -7,7 +7,7 @@ Implémentation enigma alternative en python
 
 
 # Utilisation (terminal linux)
-- Ecrire (#ecrire)
+- Ecrire <#ecrire>
 - Lire
 - Effacer le contenu
 - Modifier les paramètres
