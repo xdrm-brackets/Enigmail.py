@@ -8,15 +8,15 @@ Implémentation enigma alternative en python
 
 # Utilisation (terminal linux)
 - [Ecrire](#ecrire)
-- Lire
-- Effacer le contenu
-- Modifier les paramètres
-- Réinitialiser les paramètres
-- Afficher de l'aide
-- Crypter
-- Décrypter
-- Envoyer par mail
-- Récupérer le dernier mail
+- [Lire](#lire]
+- [Effacer le contenu]
+- [Modifier les paramètres]
+- [Réinitialiser les paramètres]
+- [Afficher de l'aide]
+- [Crypter]
+- [Décrypter]
+- [Envoyer par mail]
+- [Récupérer le dernier mail]
 
 ### Initialisation
 
