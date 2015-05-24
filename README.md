@@ -7,11 +7,16 @@ Implémentation enigma alternative en python
 
 
 # Utilisation (terminal linux)
-- Ecrire
+- Ecrire (#ecrire)
 - Lire
+- Effacer le contenu
 - Modifier les paramètres
-- dsf
--sdf
+- Réinitialiser les paramètres
+- Afficher de l'aide
+- Crypter
+- Décrypter
+- Envoyer par mail
+- Récupérer le dernier mail
 
 ### Initialisation
 
