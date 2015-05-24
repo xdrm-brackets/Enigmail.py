@@ -51,14 +51,22 @@ enigmail empty
 ######Crypter
 ```bash
 enigmail encode
+enigmail encode 168
+enigmail encode 0x1f2e85
 ```
 ######Décrypter
 ```bash
 enigmail decode
+enigmail decode 168
+enigmail decode 0x1285
 ```
 ######Envoyer par mail
 ```bash
 enigmail send
+```
+######Récupérer le contenu du dernier mail
+```bash
+enigmail receive
 ```
 ######Obtenir de l'aide
 ```bash
