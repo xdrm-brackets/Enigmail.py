@@ -12,6 +12,7 @@ then # si 1 paramètre
 			;;
 		'config') nano "$path/.config";;      # ouvre en modification le fichier de config
 		'write')  nano "$path/bucket-file";;  # ouvre en modification le bucket file
+		'del')  echo "">"$path/bucket-file";;  # vide le bucket file
 			                                  # ouvre en lecture le bucket file
 		'read')  echo "\n======================================="; cat "$path/bucket-file"; echo "\n=======================================";; 
 		'encode') python "$path/source/interface.py" encode;;

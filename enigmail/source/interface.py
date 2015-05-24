@@ -12,10 +12,14 @@ import getpass, sys, os
 
 
 # on teste l'existence du paramètre passé à l'appel (encode/decode/send)
-if( len(sys.argv) == 2 and sys.argv[1] == 'encode' or sys.argv[1] == 'decode' or sys.argv[1] == 'send' ):
-	arg = sys.argv[1];
+if( len(sys.argv) == 2 ):
+	if( sys.argv[1] == 'encode' or sys.argv[1] == 'decode' or sys.argv[1] == 'send' ):
+		arg = sys.argv[1];
+	else:
+		print("Erreur: enigmail help");
+		raise SystemExit(0);
 else:
-	print("Erreur");
+	print("Erreur: enigmail help");
 	raise SystemExit(0);
 
 
