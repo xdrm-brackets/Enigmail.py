@@ -6,6 +6,10 @@ import getpass, sys, os
 # RECUPERATION DU CHEMIN ABSOLU
 path = os.path.abspath( os.path.dirname(sys.argv[0]) )
 
+
+
+
+
 # OUVERTURE ET LECTURE DU FICHIER
 inFile = open(path + '/../bucket-file', 'r');
 m = inFile.read().decode('utf-8');
@@ -15,8 +19,10 @@ inFile.close();
 # DEFINITION DE L'ALPHABET
 SIGMA = getSigma();
 
-# CHOIX DE LA CLE
-userkey = int( raw_input('Cle (hex ou int): '), 0);
+if( len(sys.argv) >= 2 ): # si clé en argument
+	userkey = int( sys.argv[1], 0 );
+else:                     # sinon saisie
+	userkey = int( raw_input('Cle (hex ou int): '), 0 );
 
 # CALCUL de LEVEL en fonction de la clé (LEVEL = nombre de rotors)
 LEVEL = calcLevel(userkey, SIGMA);

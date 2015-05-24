@@ -15,8 +15,10 @@ inFile.close();
 # DEFINITION DE L'ALPHABET
 SIGMA = getSigma();
 
-# CHOIX DE LA CLE
-userkey = int( raw_input('Cle (hex ou int): '), 0);
+if( len(sys.argv) >= 2 ): # si clé en argument
+	userkey = int( sys.argv[1], 0 );
+else:                     # sinon saisie
+	userkey = int( raw_input('Cle (hex ou int): '), 0 );
 
 # CALCUL de LEVEL en fonction de la clé (LEVEL = nombre de rotors)
 LEVEL = calcLevel(userkey, SIGMA);

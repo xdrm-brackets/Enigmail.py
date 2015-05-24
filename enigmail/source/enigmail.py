@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import email
+import imaplib
 import smtplib
 from email.MIMEMultipart import MIMEMultipart
 from email.MIMEText import MIMEText
@@ -16,11 +18,14 @@ def getConf(pPath):
 	conf = {};
 
 	for i in lines:
-		confKey = i[:i.index('=')].replace(' ', '');
-		confVal = i[i.index('=')+1:].replace(' ', '').replace('\n', '');
-		conf[confKey] = confVal;
+		try:
+			confKey = i[:i.index('=')].replace(' ', '');
+			confVal = i[i.index('=')+1:].replace(' ', '').replace('\n', '');
+			conf[confKey] = confVal;
+		except ValueError:
+			pass;
 
-	if( len(conf) == 4 ): # si le fichier de config est bien récupéré et qu'il est complet
+	if( len(conf) == 6 ): # si le fichier de config est bien récupéré et qu'il est complet
 		return conf;
 	else:
 		return False;
@@ -34,7 +39,7 @@ def sendMail(pConf, pPass, pTo, pSubject, pMessage):
 		pMsg = MIMEMultipart();
 		pMsg['From'] = pConf['mail_address'];
 		pMsg['To'] = pTo;
-		pMsg['Subject'] = pSubject;
+		pMsg['Subject'] = "[ENIGMAIL] "+pSubject;
 
 		pMsg.attach( MIMEText(pMessage.encode('utf-8')) );
 
@@ -44,7 +49,7 @@ def sendMail(pConf, pPass, pTo, pSubject, pMessage):
 			srv.starttls();
 			srv.ehlo();
 
-		srv.login(pConf['smtp_login'], pPass);
+		srv.login(pConf['login'], pPass);
 		srv.sendmail( pConf['mail_address'], pTo, pMsg.as_string() );
 		
 		print "> Mail envoye !";
@@ -52,6 +57,27 @@ def sendMail(pConf, pPass, pTo, pSubject, pMessage):
 		print "> Mauvais login ou mot de passe\n\(enigmail config) pour changer votre adresse";
 	finally:
 		srv.quit();
+
+# cette fonction récupère les mails
+def getMail(pConf, pPass):
+	mail = imaplib.IMAP4_SSL(pConf['imap_server'], pConf['imap_port']);
+	mail.login(pConf['login'], pPass); # identification
+
+	mail.list();
+	mail.select("inbox"); # On choisit le dossier INBOX.
+
+	result, data = mail.uid('search', None, '(HEADER Subject "[ENIGMAIL]")'); # on cherche les mails contenant [ENIGMAIL] dans le sujet
+	latest_email_uid = data[0].split()[-1];
+	result, data = mail.uid('fetch', latest_email_uid, '(RFC822)');
+	m = data[0][-1];
+
+	# Pour le dernier mail contenant [ENIGMAIL] dans le sujet, on met le contenu dans bucket file
+	body = '';
+	b = email.message_from_string(m);
+	if( b.is_multipart() ):
+	    for p in b.get_payload():
+			body += p.get_payload()
+	return body;
 
 
 
