@@ -20,7 +20,7 @@ def getConf(pPath):
 		confVal = i[i.index('=')+1:].replace(' ', '').replace('\n', '');
 		conf[confKey] = confVal;
 
-	if( len(conf) == 3 ): # si le fichier de config est bien récupéré et qu'il est complet
+	if( len(conf) == 4 ): # si le fichier de config est bien récupéré et qu'il est complet
 		return conf;
 	else:
 		return False;
@@ -29,6 +29,7 @@ def getConf(pPath):
 
 # cette fonction envoie un mail
 def sendMail(pConf, pPass, pTo, pSubject, pMessage):
+	srv = smtplib.SMTP(pConf['smtp_server'], int(pConf['smtp_port']) );
 	try:
 		pMsg = MIMEMultipart();
 		pMsg['From'] = pConf['mail_address'];
@@ -37,19 +38,20 @@ def sendMail(pConf, pPass, pTo, pSubject, pMessage):
 
 		pMsg.attach( MIMEText(pMessage.encode('utf-8')) );
 
-		srv = smtplib.SMTP(pConf['smtp_server'], pConf['smtp_port']);
 		srv.ehlo();
-		srv.starttls();
-		srv.ehlo();
-		srv.login(pConf['mail_address'], pPass);
 
+		if( srv.has_extn('STARTTLS') ):
+			srv.starttls();
+			srv.ehlo();
+
+		srv.login(pConf['smtp_login'], pPass);
 		srv.sendmail( pConf['mail_address'], pTo, pMsg.as_string() );
-		srv.quit();
-
+		
 		print "> Mail envoye !";
 	except smtplib.SMTPAuthenticationError:
 		print "> Mauvais login ou mot de passe\n\(enigmail config) pour changer votre adresse";
-
+	finally:
+		srv.quit();
 
 
 

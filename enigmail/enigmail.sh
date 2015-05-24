@@ -9,6 +9,7 @@ then # si 1 paramètre
 		'init')                               # initialise le contenu du fichier de config
 			echo "smtp_server = smtp.gmail.com" > "$path/.config"
 			echo "smtp_port = 587" >> "$path/.config"
+			echo "smtp_login = equal_mailadress_or_different_login" >> "$path/.config"
 			echo "mail_address = test@mail.com" >> "$path/.config"
 			;;
 		'config') nano "$path/.config";;      # ouvre en modification le fichier de config
