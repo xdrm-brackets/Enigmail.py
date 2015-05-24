@@ -77,7 +77,7 @@ enigmail help
 ### A faire
 1. Prise en compte: accents + utf-8 [FAIT]
 2. Gestion: fichiers [FAIT]
-3. Améliorer le cryptage car pour un même caractère n fois, on obtient un schéma répétitif
+3. Améliorer le cryptage car pour un même caractère n fois, on obtient un schéma répétitif [fait~50]
 4. Gestion de serveur SMTP [FAIT~50]
 5. Fichier de config [FAIT~80]
 6. Appel en shell [FAIT]
