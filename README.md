@@ -10,12 +10,12 @@ Implémentation enigma alternative en python
 - [Ecrire](#ecrire)
 - [Lire](#lire)
 - [Effacer le contenu](#effacer-le-contenu)
-- [Réinitialiser les paramètres](#reinitialiser-les-parametres)
-- [Modifier les paramètres](#modifier-les-parametres)
+- [Réinitialiser les paramètres](#r%C3%A9initialiser-les-param%C3%A8tres)
+- [Modifier les paramètres](#modifier-les-param%C3%A8tres)
 - [Crypter](#crypter)
-- [Décrypter](#decrypter)
+- [Décrypter](#d%C3%A9crypter)
 - [Envoyer par mail](#envoyer-par-mail)
-- [Récupérer le dernier mail](#recuperer-le-contenu-du-dernier-mail)
+- [Récupérer le dernier mail](#recup%C3%A9rer-le-contenu-du-dernier-mail)
 - [Obtenir de l'aide](#obtenir-de-laide)
 
 ### Initialisation
