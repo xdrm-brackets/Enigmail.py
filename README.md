@@ -44,9 +44,9 @@ enigmail init
 ```bash
 enigmail read
 ```
-######Effacer
+######Effacer le contenu
 ```bash
-enigmail del
+enigmail empty
 ```
 ######Crypter
 ```bash
