@@ -1,0 +1,49 @@
+ENIGMAIL
+
+NAME
+	enigmail - enigma-based encoder and decoder and mail client
+
+SYNOPSYS
+	enigmail [OPTION]
+
+DESCRIPTION
+	Encode, decode, write, read and send email.
+	For all the operations, the "bucket file" is the only file you write in, you read and you can empty and send its content.
+
+	Enigmail allows you to encode messages and send them by mail with a secret key you choose. (number of hexadecimal)
+	Note: your key could be 1 to infinity
+
+OPTIONS
+	help
+		show this help page
+
+	init
+		initialise the config page and the bucket file
+
+	config
+		open the config page where you can enter your personal informations (smtp server and port, email address)
+
+	read
+		shows the content of the bucket file
+
+	write
+		open the bucket file in write mode 
+
+	empty
+		empty the bucket file
+
+	encode
+		lets you encode the content of your bucket file to your bucket file, the data will be overwritten
+
+	decode
+		lets you decode the content of your bucket file to your bucket file, the data will be overwritten
+
+	send
+		open an interface to choose your receiver, your subjet and type your email password then send an email containing the content of the bucket file
+
+AUTHOR
+	Written by Adrien MARQUES.
+
+COPYRIGHT
+       License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
+       This is free software: you are free to change and redistribute it. There is NO WARRANTY, to the extent permitted by law.
