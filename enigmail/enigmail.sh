@@ -15,11 +15,11 @@ then # si 1 paramètre
 		'del')  echo "">"$path/bucket-file";;  # vide le bucket file
 			                                  # ouvre en lecture le bucket file
 		'read')  echo "\n======================================="; cat "$path/bucket-file"; echo "\n=======================================";; 
-		'encode') python "$path/source/interface.py" encode;;
-		'decode') python "$path/source/interface.py" decode;;
-		'send') python "$path/source/interface.py" send;;
+		'encode') python "$path/source/encode.py";;
+		'decode') python "$path/source/decode.py";;
+		'send') python "$path/source/send.py";;
 		*) echo "Erreur";
 	esac;
 else
-	python "$path/source/interface.py";
+	echo "Parametre manquant: enigmail help";
 fi;
