@@ -15,7 +15,7 @@ Implémentation enigma alternative en python
 - [Crypter](#crypter)
 - [Décrypter](#d%C3%A9crypter)
 - [Envoyer par mail](#envoyer-par-mail)
-- [Récupérer le dernier mail](#recup%C3%A9rer-le-contenu-du-dernier-mail)
+- [Récupérer le dernier mail](#r%C3%A9cup%C3%A9rer-le-contenu-du-dernier-mail)
 - [Obtenir de l'aide](#obtenir-de-laide)
 
 ### Initialisation
