@@ -25,10 +25,23 @@ def getConf(pPath):
 		except ValueError:
 			pass;
 
-	if( len(conf) >= 6 ): # si le fichier de config est bien récupéré et qu'il est complet
+	allPropertiesOk = False;
+	try:
+		conf['smtp_server']; 
+		conf['smtp_port'];
+
+		conf['imap_server']; 
+		conf['imap_port'];
+
+		conf['mail_address']; 
+		conf['login']; 
+
+		conf['algorithm_complexity']; 
+
 		return conf;
-	else:
-		return False;
+	except (KeyError, ValueError):
+		print "Erreur: fichier de configuration incomplet";
+		raise SystemExit(0);
 
 
 
@@ -85,7 +98,7 @@ def getMail(pConf, pPass):
 def getSigma():
 	SIGMA =  'ABCDEFGHIJKLMNOPQRSTUVWXYZ';           # maj
 	SIGMA += 'abcdefghijklmnopqrstuvwxyz';           # min
-	SIGMA += '&=+^~@%,.?!:;[](){}-_#$*/ \\"«»\'\n';    # ponctuation + retour charriot
+	SIGMA += '&=+^~@%,.?!:;[](){}-_#$*/ \t\\"«»\'\n';    # ponctuation + retour charriot
 	SIGMA += '0123456789';                           # digit
 	SIGMA += 'éèêàâùçîô';                               # accents
 	SIGMA = SIGMA.decode('utf-8');
@@ -209,6 +222,5 @@ def decodeStr(pM, pSIGMA, pROTOR, pTimes):
 			decodedStr += decodeChar(c, pSIGMA, pROTOR);           # on lit le caractere
 			rotateRotorsAnticlockwise(pROTOR);                     # on tourne les rotors dans le sens inverse
 		tmp = decodedStr[::-1];
-
 	# on retourne la chaine
 	return decodedStr[::-1];

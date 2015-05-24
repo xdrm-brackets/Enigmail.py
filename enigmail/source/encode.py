@@ -35,7 +35,10 @@ for i in range(0, LEVEL):
 	ROTOR.append( shuffle( SIGMA, KEY[i]) );           # on creer le rotor et le melange suivant la cle
 	ROTOR[0].append( ROTOR[i+1][0] );                  # on enregistre la l&ettre en premiere position dans la premiere entree du rotor
 	
-M = encodeStr(m, SIGMA, ROTOR, 1); # ENCODAGE DU MESSAGE (dernier arg = nombre de fois)
+# Récupère le niveau de complexité dans le fichier de configuration si il y est
+Complexity = int( getConf(path)['algorithm_complexity'], 0 );
+
+M = encodeStr(m, SIGMA, ROTOR, Complexity); # ENCODAGE DU MESSAGE (dernier arg = nombre de fois)
 # ECRITURE FICHIER
 outFile = open(path + '/../bucket-file', 'w');
 outFile.write( M.encode('utf-8') );

@@ -8,10 +8,6 @@ path = os.path.abspath( os.path.dirname(sys.argv[0]) );
 # paramètres utilisateurs
 conf = getConf(path);
 
-if( conf == False ): # si manque des paramètres
-	print "parametres manquants";
-	raise SystemExit(0);
-
 Pass = str( getpass.getpass('Mot de passe    : ') );
 print '...';
 

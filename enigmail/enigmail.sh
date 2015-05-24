@@ -28,17 +28,19 @@ then # si 1 paramètre au moins
 	case $1 in
 		'help') cat "$path/source/help"|less;;
 		'init')                               # initialise le contenu du fichier de config
-			echo "smtp_server  = smtp.gmail.com" > "$path/.config";
-			echo "smtp_port    = 587" >> "$path/.config";
+			echo "smtp_server = smtp.gmail.com" > "$path/.config";
+			echo "smtp_port = 587" >> "$path/.config";
 			echo "" >> "$path/.config";
-			echo "imap_server  = imap.gmail.com" >> "$path/.config";
-			echo "imap_port    = 993" >> "$path/.config";
+			echo "imap_server = imap.gmail.com" >> "$path/.config";
+			echo "imap_port = 993" >> "$path/.config";
 			echo "" >> "$path/.config";
 			echo "mail_address = test@mail.com" >> "$path/.config";
 			echo "" >> "$path/.config";
-			echo "login        = equal_mailadress_or_different_login" >> "$path/.config";
+			echo "login = equal_mailadress_or_different_login" >> "$path/.config";
 			echo "" >> "$path/.config";
-			echo "text_editor  = nano" >> "$path/.config";
+			echo "algorithm_complexity = 1" >> "$path/.config";
+			echo "" >> "$path/.config";
+			echo "text_editor = nano" >> "$path/.config";
 			;;
 		'config')
 			if [ -z $param ]
