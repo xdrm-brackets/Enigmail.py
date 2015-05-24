@@ -14,6 +14,9 @@ then # si 1 paramètre
 		'write')  nano "$path/bucket-file";;  # ouvre en modification le bucket file
 			                                  # ouvre en lecture le bucket file
 		'read')  echo "\n======================================="; cat "$path/bucket-file"; echo "\n=======================================";; 
+		'encode') python "$path/source/interface.py" encode;;
+		'decode') python "$path/source/interface.py" decode;;
+		'send') python "$path/source/interface.py" send;;
 		*) echo "Erreur";
 	esac;
 else
