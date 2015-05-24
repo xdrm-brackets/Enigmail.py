@@ -7,6 +7,11 @@ Implémentation enigma alternative en python
 
 
 # Utilisation (terminal linux)
+- Ecrire
+- Lire
+- Modifier les paramètres
+- dsf
+-sdf
 
 ### Initialisation
 
