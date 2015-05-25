@@ -43,33 +43,28 @@ Si vous obtenez une erreur, retournez à la première étape vous n'êtes pas da
 
 ### Utilisation
 
-#####Ecrire
 ```bash
+# Ecrire
 enigmail write
 enigmail w
-```
-#####Modifier les paramètres
-```bash
+
+# Modifier les paramètres
 enigmail config
 enigmail c
-```
-#####Réinitialiser les paramètres
-```bash
+
+# Réinitialiser les paramètres
 enigmail init
 enigmail i
-```
-#####Lire
-```bash
+
+# Lire
 enigmail read
 enigmail r
-```
-#####Effacer le contenu
-```bash
+
+# Effacer le contenu
 enigmail empty
 enigmail em
-```
-#####Crypter
-```bash
+
+# Crypter
 enigmail encode
 enigmail encode 168
 enigmail encode 0x1f2e85
@@ -77,9 +72,8 @@ enigmail encode 0x1f2e85
 enigmail e
 enigmail e 168
 enigmail e 0x1f2e85
-```
-#####Décrypter
-```bash
+
+# Décrypter
 enigmail decode
 enigmail decode 168
 enigmail decode 0x1285
@@ -87,19 +81,16 @@ enigmail decode 0x1285
 enigmail d
 enigmail d 168
 enigmail d 0x1285
-```
-#####Envoyer par mail
-```bash
+
+# Envoyer par mail
 enigmail send
 enigmail ms  # MailSend
-```
-#####Récupérer le contenu du dernier mail
-```bash
+
+# Récupérer le contenu du dernier mail
 enigmail receive
 enigmail mr  # MailReceive
-```
-#####Obtenir de l'aide
-```bash
+
+# Obtenir de l'aide
 enigmail help
 enigmail h
 ```
