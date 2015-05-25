@@ -41,46 +41,62 @@ Si vous obtenez une erreur, retournez à la première étape vous n'êtes pas da
 ######Ecrire
 ```bash
 enigmail write
+enigmail w
 ```
 ######Modifier les paramètres
 ```bash
 enigmail config
+enigmail c
 ```
 ######Réinitialiser les paramètres
 ```bash
 enigmail init
+enigmail i
 ```
 ######Lire
 ```bash
 enigmail read
+enigmail r
 ```
 ######Effacer le contenu
 ```bash
 enigmail empty
+enigmail em
 ```
 ######Crypter
 ```bash
 enigmail encode
 enigmail encode 168
 enigmail encode 0x1f2e85
+
+enigmail e
+enigmail e 168
+enigmail e 0x1f2e85
 ```
 ######Décrypter
 ```bash
 enigmail decode
 enigmail decode 168
 enigmail decode 0x1285
+
+enigmail d
+enigmail d 168
+enigmail d 0x1285
 ```
 ######Envoyer par mail
 ```bash
 enigmail send
+enigmail ms  # MailSend
 ```
 ######Récupérer le contenu du dernier mail
 ```bash
 enigmail receive
+enigmail mr  # MailReceive
 ```
 ######Obtenir de l'aide
 ```bash
 enigmail help
+enigmail h
 ```
 
 
