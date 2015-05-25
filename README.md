@@ -8,16 +8,16 @@ _Note: Je ne suis pas expert en cryptographie, ceci n'est qu'une ébauche_
 
 # Utilisation (terminal linux)
 - [Configurer](#configurer)
-- [Ecrire](#ecrire)
-- [Lire](#lire)
-- [Effacer le contenu](#effacer-le-contenu)
-- [Réinitialiser les paramètres](#r%C3%A9initialiser-les-param%C3%A8tres)
-- [Modifier les paramètres](#modifier-les-param%C3%A8tres)
-- [Crypter](#crypter)
-- [Décrypter](#d%C3%A9crypter)
-- [Envoyer par mail](#envoyer-par-mail)
-- [Récupérer le dernier mail](#r%C3%A9cup%C3%A9rer-le-contenu-du-dernier-mail)
-- [Obtenir de l'aide](#obtenir-de-laide)
+- [Ecrire](#utilisation)
+- [Lire](#utilisation)
+- [Effacer le contenu](#utilisation)
+- [Réinitialiser les paramètres](#utilisation)
+- [Modifier les paramètres](#utilisation)
+- [Crypter](#utilisation)
+- [Décrypter](#utilisation)
+- [Envoyer par mail](#utilisation)
+- [Récupérer le dernier mail](#utilisation)
+- [Obtenir de l'aide](#utilisation)
 
 ### Initialisation
 
@@ -56,7 +56,7 @@ __Paramètres__
 
 _Note: le login smtp et imap est commun. Le protocole POP n'est pas pris en charge dans cette version. L'utilisation du service mail fonctionne pour gmail et n'est pas stable pour les autres clients mail._
 
-### Utilisation
+###Utilisation
 
 ```bash
 # Ecrire
