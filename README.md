@@ -1,12 +1,13 @@
 # Enigmail.py
 
-Implémentation enigma alternative en python
 
-##### Note: Je ne suis pas expert en cryptographie, ceci n'est qu'une ébauche
+
+_Note: Je ne suis pas expert en cryptographie, ceci n'est qu'une ébauche_
 
 
 
 # Utilisation (terminal linux)
+- [Configurer](#configurer)
 - [Ecrire](#ecrire)
 - [Lire](#lire)
 - [Effacer le contenu](#effacer-le-contenu)
@@ -23,23 +24,37 @@ Implémentation enigma alternative en python
 ```bash
 # 1. Se positionner dans le dossier __enigmail/__.
 cd chemin/enigmail/
+
 # 2. Créer un __alias__ pour l'utilisation d'enigmail.
 alias enigmail="sh $(pwd)/enigmail.sh"
+
 # OU
-# 2. Enregistrer comme commande intégrée
-# (toujours dans le dossier d'enigmail)
+
+# 2. Enregistrer comme commande intégrée (toujours dans le dossier d'enigmail)
 sh install.sh
 ```
 - la commande enigmail fonctionnera à la prochaine ouverture d'un terminal
 
 _Note: Il faudra refaire cette manipulation si vous changez le répertoire de place._
-#####Entrez vos paramètres personnels
+
+
+#####Configurer
 ```bash
 enigmail config
 ```
-Il vous faudra ensuite entrer vos paramètres en remplaçant les valeurs déjà écrites puis enregistrer le fichier
+
+Entrer ses paramètres en remplaçant les valeurs déjà écrites et enregistrer le fichier.
 Si vous obtenez une erreur, retournez à la première étape vous n'êtes pas dans le bon dossier.
-(voir [config](#config))
+
+__Paramètres__
+- serveur smtp
+- port smtp
+- serveur imap
+- port imap
+- login smtp/imap
+- adresse mail
+
+_Note: le login smtp et imap est commun. Le protocole POP n'est pas pris en charge dans cette version. L'utilisation du service mail fonctionne pour gmail et n'est pas stable pour les autres clients mail._
 
 ### Utilisation
 
@@ -65,18 +80,18 @@ enigmail empty
 enigmail em
 
 # Crypter
-enigmail encode
-enigmail encode 168
-enigmail encode 0x1f2e85
+enigmail encode          # ouvre l'interface pour entrer la clé
+enigmail encode 168      # cryptage avec clé numérique
+enigmail encode 0x1f2e85 # cryptage avec clé hexadécimale
 
 enigmail e
 enigmail e 168
 enigmail e 0x1f2e85
 
 # Décrypter
-enigmail decode
-enigmail decode 168
-enigmail decode 0x1285
+enigmail decode          # ouvre l'interface pour entrer la clé
+enigmail decode 168      # décryptage avec clé numérique
+enigmail decode 0x1285   # décryptage avec clé hexadécimale
 
 enigmail d
 enigmail d 168
@@ -95,15 +110,6 @@ enigmail help
 enigmail h
 ```
 
-######Config
-- serveur smtp
-- port smtp
-- serveur imap
-- port imap
-- login smtp/imap
-- adresse mail
-
-_Note: le login smtp et imap est commun. Le protocole POP n'est pas pris en charge dans cette version. L'utilisation du service mail fonctionne pour gmail et n'est pas stable pour les autres clients mail._
 
 
 ###A faire
