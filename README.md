@@ -20,15 +20,15 @@ Implémentation enigma alternative en python
 
 ### Initialisation
 
-######Se positionner dans le dossier __enigmail/__.
+#####Se positionner dans le dossier __enigmail/__.
 ```bash
 cd chemin/enigmail/
 ```
-######Créer un __alias__ pour l'utilisation d'enigmail.
+#####Créer un __alias__ pour l'utilisation d'enigmail.
 ```bash
 alias enigmail="sh $(pwd)/enigmail.sh"
 ```
-######Enregistrer enigmail comme commande intégrée
+#####Enregistrer enigmail comme commande intégrée
 - toujours dans le dossier d'enigmail
 ```bash
 sh install.sh
@@ -36,7 +36,7 @@ sh install.sh
 - la commande enigmail fonctionnera à la prochaine ouverture d'un terminal
 
 _Note: Il faudra refaire cette manipulation si vous changez le répertoire de place._
-######Entrez vos paramètres personnels
+#####Entrez vos paramètres personnels
 ```bash
 enigmail config
 ```
@@ -46,32 +46,32 @@ Si vous obtenez une erreur, retournez à la première étape vous n'êtes pas da
 
 ### Utilisation
 
-######Ecrire
+#####Ecrire
 ```bash
 enigmail write
 enigmail w
 ```
-######Modifier les paramètres
+#####Modifier les paramètres
 ```bash
 enigmail config
 enigmail c
 ```
-######Réinitialiser les paramètres
+#####Réinitialiser les paramètres
 ```bash
 enigmail init
 enigmail i
 ```
-######Lire
+#####Lire
 ```bash
 enigmail read
 enigmail r
 ```
-######Effacer le contenu
+#####Effacer le contenu
 ```bash
 enigmail empty
 enigmail em
 ```
-######Crypter
+#####Crypter
 ```bash
 enigmail encode
 enigmail encode 168
@@ -81,7 +81,7 @@ enigmail e
 enigmail e 168
 enigmail e 0x1f2e85
 ```
-######Décrypter
+#####Décrypter
 ```bash
 enigmail decode
 enigmail decode 168
@@ -91,17 +91,17 @@ enigmail d
 enigmail d 168
 enigmail d 0x1285
 ```
-######Envoyer par mail
+#####Envoyer par mail
 ```bash
 enigmail send
 enigmail ms  # MailSend
 ```
-######Récupérer le contenu du dernier mail
+#####Récupérer le contenu du dernier mail
 ```bash
 enigmail receive
 enigmail mr  # MailReceive
 ```
-######Obtenir de l'aide
+#####Obtenir de l'aide
 ```bash
 enigmail help
 enigmail h
