@@ -42,7 +42,7 @@ enigmail config
 ```
 Il vous faudra ensuite entrer vos paramètres en remplaçant les valeurs déjà écrites puis enregistrer le fichier
 Si vous obtenez une erreur, retournez à la première étape vous n'êtes pas dans le bon dossier.
-(voir [config](#config))view-source: 
+(voir [config](#config))
 
 ### Utilisation
 
