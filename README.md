@@ -20,17 +20,14 @@ Implémentation enigma alternative en python
 
 ### Initialisation
 
-#####Se positionner dans le dossier __enigmail/__.
 ```bash
+# 1. Se positionner dans le dossier __enigmail/__.
 cd chemin/enigmail/
-```
-#####Créer un __alias__ pour l'utilisation d'enigmail.
-```bash
+# 2. Créer un __alias__ pour l'utilisation d'enigmail.
 alias enigmail="sh $(pwd)/enigmail.sh"
-```
-#####Enregistrer comme commande intégrée
-- toujours dans le dossier d'enigmail
-```bash
+# OU
+# 2. Enregistrer comme commande intégrée
+# (toujours dans le dossier d'enigmail)
 sh install.sh
 ```
 - la commande enigmail fonctionnera à la prochaine ouverture d'un terminal
