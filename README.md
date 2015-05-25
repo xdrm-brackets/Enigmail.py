@@ -28,6 +28,12 @@ cd chemin/enigmail/
 ```bash
 alias enigmail="sh $(pwd)/enigmail.sh"
 ```
+######Enregistrer enigmail comme commande intégrée
+- toujours dans le dossier d'enigmail
+```bash
+echo "alias enigmail=\"sh $(pwd)/enigmail.sh\"" >> ~/.bashrc
+```
+- la commande enigmail fonctionnera à la prochaine ouverture d'un terminal
 ######Entrez vos paramètres personnels
 ```bash
 enigmail config
