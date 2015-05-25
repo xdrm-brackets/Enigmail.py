@@ -28,7 +28,7 @@ cd chemin/enigmail/
 ```bash
 alias enigmail="sh $(pwd)/enigmail.sh"
 ```
-#####Enregistrer enigmail comme commande intégrée
+#####Enregistrer comme commande intégrée
 - toujours dans le dossier d'enigmail
 ```bash
 sh install.sh
@@ -42,7 +42,7 @@ enigmail config
 ```
 Il vous faudra ensuite entrer vos paramètres en remplaçant les valeurs déjà écrites puis enregistrer le fichier
 Si vous obtenez une erreur, retournez à la première étape vous n'êtes pas dans le bon dossier.
-
+(voir [config](#config))view-source: 
 
 ### Utilisation
 
@@ -107,8 +107,18 @@ enigmail help
 enigmail h
 ```
 
+######Config
+- serveur smtp
+- port smtp
+- serveur imap
+- port imap
+- login smtp/imap
+- adresse mail
 
-### A faire
+_Note: le login smtp et imap est commun. Le protocole POP n'est pas pris en charge dans cette version. L'utilisation du service mail fonctionne pour gmail et n'est pas stable pour les autres clients mail._
+
+
+###A faire
 1. Prise en compte: accents + utf-8 [FAIT]
 2. Gestion: fichiers [FAIT]
 3. Améliorer le cryptage car pour un même caractère n fois, on obtient un schéma répétitif [fait~50]
