@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 
+import sys
+import datetime
 import email
 import imaplib
 import smtplib
-from email.MIMEMultipart import MIMEMultipart
-from email.MIMEText import MIMEText
+import email.utils
+from email.mime.text import MIMEText
 
 
 
@@ -47,29 +49,38 @@ def getConf(pPath):
 
 # cette fonction envoie un mail
 def sendMail(pConf, pPass, pTo, pSubject, pMessage):
-	srv = smtplib.SMTP(pConf['smtp_server'], int(pConf['smtp_port']) );
+	# Définition du serveur SMTP
+	srv = smtplib.SMTP();
+	srv.connect( pConf['smtp_server'], pConf['smtp_port'] );
+	
 	try:
-		pMsg = MIMEMultipart();
-		pMsg['From'] = pConf['mail_address'];
-		pMsg['To'] = pTo;
-		pMsg['Subject'] = "[ENIGMAIL] "+pSubject;
+		# formattage du message et du header
+		msg = MIMEText( pMessage.encode('utf-8') );
+		msg.set_unixfrom('author');
+		msg['To'] = email.utils.formataddr(('Author', pTo));
+		msg['From'] = email.utils.formataddr(('Recipient', pConf['mail_address'] ));
+		msg['Subject'] = "[ENIGMAIL] "+pSubject;
 
-		pMsg.attach( MIMEText(pMessage.encode('utf-8')) );
+		# activation du log
+		srv.set_debuglevel(True);
 
+		# Identification de la connection
 		srv.ehlo_or_helo_if_needed();
 
-		if( srv.has_extn('STARTTLS') ):
-			srv.starttls();
-			srv.ehlo_or_helo_if_needed();
+		if( srv.has_extn('STARTTLS') ):   # Si on doit encrypter la session
+			srv.starttls();               # on encrypte la session
+			srv.ehlo_or_helo_if_needed(); # on se ré-identifie à travers la connection sécurisée
 
+		# connection au serveur avec le login du config-file et le mot de passe passé en paramètre
 		srv.login(pConf['login'], pPass);
-		srv.sendmail( pConf['mail_address'], pTo, pMsg.as_string() );
+		# envoi du mail (formattage du message)
+		srv.sendmail( pConf['mail_address'], [pTo], msg.as_string() );
 		
 		print "> Mail envoye !";
-	except smtplib.SMTPAuthenticationError:
+	except smtplib.SMTPAuthenticationError: # message d'alerte si mauvais identifiants
 		print "> Mauvais login ou mot de passe\n\(enigmail config) pour changer votre adresse";
 	finally:
-		srv.quit();
+		srv.quit(); # quitte le serveur si déroulement normal ou exception   
 
 # cette fonction récupère les mails
 def getMail(pConf, pPass):
