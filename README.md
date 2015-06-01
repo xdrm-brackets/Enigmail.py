@@ -113,9 +113,9 @@ enigmail h
 
 
 ###A faire
-[x] Prise en compte: accents + utf-8
-[x] Gestion: fichiers
-[ ] Améliorer le cryptage car pour un même caractère n fois, on obtient un schéma répétitif ~50
-[ ] Gestion de serveur SMTP ~50
-[x] Fichier de config ~80
-[x] Appel en shell
+- [x] Prise en compte: accents + utf-8
+- [x] Gestion: fichiers
+- [ ] Améliorer le cryptage car pour un même caractère n fois, on obtient un schéma répétitif ~50
+- [ ] Gestion de serveur SMTP ~50
+- [x] Fichier de config ~80
+- [x] Appel en shell
